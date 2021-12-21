@@ -9,16 +9,21 @@ const shops: Shop[] = [
     { id: 444, name: "Sylvester's Shoes", rating: 3.8 },
     { id: 555, name: "Teddy's Tunes", rating: 4.7 }
 ];
-
+let nextId: number = 666;
 //Query ?minRating=4.0
 shopRoutes.get("/", function(req, res){
-    //req.query.minRating
+    let minRatingParam: string = req.query.minRating as string;
+    if(minRatingParam){
+        //req.query.minRating
+        let minRating: number = Number.parseFloat(minRatingParam);
+        // if shops[i].rating >= req.query.minRating
+        console.log(minRating);
+        let filteredShops: Shop[] = shops.filter(shop => shop.rating >= minRating);
+        res.json(filteredShops);
+    } else {
+        res.json(shops);
+    }
     
-    let minRating: number = Number.parseInt(req.query.minRating as string);
-    // if shops[i].rating >= req.query.minRating
-    console.log(minRating);
-    let filteredShops: Shop[] = shops.filter(shop => shop.rating >= minRating);
-    res.json(filteredShops);
 });
 
 shopRoutes.get("/:id", function(req, res){
