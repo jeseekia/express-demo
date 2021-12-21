@@ -16,9 +16,20 @@ shopRoutes.get("/", function(req, res){
 });
 
 shopRoutes.get("/:id", function(req, res){
+    // req.params.id shops[i].id
     //search shop array
-    //find shop by id property
-    //return the json response with the shop object
+    for(let i=0; i<shops.length; i++){
+        let inputId: number = Number.parseInt(req.params.id);
+        //find shop by id property
+        if(shops[i].id === inputId) {
+            //return the json response with the shop object
+            res.json(shops[i]);
+            break;
+        }
+    }
+    res.status(404);
+    res.send({"error": "Shop not found"});
+    
 });
 
 export default shopRoutes;
