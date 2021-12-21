@@ -10,9 +10,15 @@ const shops: Shop[] = [
     { id: 555, name: "Teddy's Tunes", rating: 4.7 }
 ];
 
-
+//Query ?minRating=4.0
 shopRoutes.get("/", function(req, res){
-    res.json(shops);
+    //req.query.minRating
+    
+    let minRating: number = Number.parseInt(req.query.minRating as string);
+    // if shops[i].rating >= req.query.minRating
+    console.log(minRating);
+    let filteredShops: Shop[] = shops.filter(shop => shop.rating >= minRating);
+    res.json(filteredShops);
 });
 
 shopRoutes.get("/:id", function(req, res){
