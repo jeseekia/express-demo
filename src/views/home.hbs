@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>You are home!</h1>
+    <h2>Welcome: {{name}}</h2>
+    <p>State: {{state}}</p>
+    <p>Primary Language: {{ languages.primary }}</p>
+    {{!-- <ul>
+        {{#each pets}}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul> --}}
+    <ul>
+        {{#each pets}}
+            <li>{{name}} is a {{type}}</li>
+        {{/each}}
+    </ul>
+    {{#if message}}
+        <p>{{ message }}</p>
+    {{else}}
+        <p>No message</p>    
+    {{/if}}
+
+    <nav>
+        <a href="/api/shops">Shops API</a>
+        <a href="/api/shops?minRating=4.0">Shops w/4.0+ rating</a>
+        <a href="/api/shops/111">Shop id 111</a>
+        <a href="/fruit">Fruit</a>
+        <a href="/languages">Languages</a>
+    </nav>
+
+    <form action="/api/shops" method="POST">
+        Name: <input type="text" name="name">
+        Rating: <input type="number" name="rating" step=0.1>
+        <input type="submit">
+    </form>
+</body>
+</html>

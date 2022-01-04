@@ -27,8 +27,8 @@ shopRoutes.get("/", function(req, res){
 });
 
 shopRoutes.post("/", function(req, res){
-    let newShop: Shop = req.body;
-    newShop.id = nextId;
+    let newShop: Shop = {id: nextId, name: req.body.name, rating: req.body.rating};
+    // newShop.id = nextId;
     nextId += 111;
     shops.push(newShop);
     res.status(201);
