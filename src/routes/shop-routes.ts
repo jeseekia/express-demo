@@ -26,6 +26,31 @@ shopRoutes.get("/", function(req, res){
     
 });
 
+shopRoutes.post("/", function(req, res){
+    let newShop: Shop = req.body;
+    newShop.id = nextId;
+    nextId += 111;
+    shops.push(newShop);
+    res.status(201);
+    res.json(newShop);
+});
+
+shopRoutes.delete("/:id", function(req, res){
+    //use id parameter to delete the corresponding Shop object from shops []
+    let inputId: number = Number.parseInt(req.params.id);
+    //loop through shops array
+        //if inputId matches the shop[i].id
+        //shops.splice(i);
+    //use the find method and test if shop.id matches inputId
+        //return that shop
+        
+    let shopIndex: number = shops.findIndex(shop => shop.id === inputId);
+    console.log(shopIndex);
+    shops.splice(shopIndex, 1);
+    res.status(204);
+    res.json("");
+});
+
 shopRoutes.get("/:id", function(req, res){
     // req.params.id shops[i].id
     //search shop array
